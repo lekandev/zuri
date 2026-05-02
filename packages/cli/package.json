@@ -1,0 +1,31 @@
+{
+  "name": "create-zuri",
+  "version": "0.1.0",
+  "description": "Scaffold a Zuri ecommerce store — Paystack + Supabase + Next.js",
+  "type": "module",
+  "bin": {
+    "create-zuri": "./src/index.js"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.7.0",
+    "fs-extra": "^11.2.0",
+    "picocolors": "^1.1.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "ecommerce",
+    "paystack",
+    "supabase",
+    "nextjs",
+    "scaffold"
+  ],
+  "license": "MIT"
+}

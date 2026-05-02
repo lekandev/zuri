@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url'
 import pc from 'picocolors'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const TEMPLATE_DIR = path.resolve(__dirname, '../../template')
+const TEMPLATE_DIR = path.resolve(__dirname, '../template')
 
 async function main() {
   console.log()

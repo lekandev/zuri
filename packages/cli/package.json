@@ -1,13 +1,14 @@
 {
-  "name": "create-zuri",
+  "name": "create-zuri-storefront",
   "version": "0.1.0",
   "description": "Scaffold a Zuri ecommerce store — Paystack + Supabase + Next.js",
   "type": "module",
   "bin": {
-    "create-zuri": "./src/index.js"
+    "create-zuri-storefront": "src/index.js"
   },
   "files": [
-    "src"
+    "src",
+    "template"
   ],
   "scripts": {
     "start": "node src/index.js"

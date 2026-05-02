@@ -1,9 +1,9 @@
-# create-zuri
+# create-zuri-storefront
 
 A CLI that scaffolds a production-ready storefront in under a minute. Built on Next.js 15, Supabase, and Paystack — with WhatsApp ordering and a full admin dashboard included.
 
 ```bash
-npx create-zuri
+npx create-zuri-storefront
 ```
 
 ---
@@ -15,8 +15,9 @@ npx create-zuri
 - **Newsletter** — email capture stored in Supabase
 - **Admin dashboard** — manage products, view orders, export subscribers (protected by Supabase Auth)
 - **API routes** — Paystack webhook, order creation, subscriber signup
+- **5 design tastes** — apply a full visual theme in one conversation with Claude
 
-Stack: **Next.js 15** · **Tailwind CSS v4** · **Supabase** (DB + Auth + Storage) · **Paystack**
+Stack: **Next.js 15** · **TypeScript** · **Tailwind CSS v4** · **Supabase** (DB + Auth + Storage) · **Paystack**
 
 ---
 
@@ -35,7 +36,7 @@ Before running the CLI you need accounts at:
 
 ```bash
 # Scaffold a new store
-npx create-zuri
+npx create-zuri-storefront
 
 # The CLI will ask for:
 # - Project name (folder to create)
@@ -68,6 +69,22 @@ npm run dev
 
 - Storefront: http://localhost:3000
 - Admin: http://localhost:3000/admin
+
+---
+
+## Design tastes
+
+Your project ships with a `TASTE.md` file that describes **5 visual themes** — from minimal to editorial to dark luxury. If you're using Claude (Claude Code or claude.ai), open the project and ask Claude to read `TASTE.md`. It will walk you through the options and apply your chosen theme across the entire codebase in one go.
+
+| Taste | Vibe | Inspired by |
+|---|---|---|
+| **Blanc** | Clean, minimal, confident | Apple Store, Muji |
+| **Noir** | Bold, editorial, high-contrast | Supreme, Palace |
+| **Terra** | Warm, artisan, considered | Kinfolk, Brightland |
+| **Obsidian** | Dark, luxe, cinematic | Tom Ford, Byredo |
+| **Pop** | Playful, vibrant, rounded | Glossier, Parade |
+
+Each taste changes the font, colour palette, border radii, and shadow style — no design skills required.
 
 ---
 
@@ -133,14 +150,11 @@ Categories and sizes shown in the store filter are derived dynamically from your
 
 ### Currency
 
-Set `NEXT_PUBLIC_CURRENCY_SYMBOL` to any symbol (`$`, `€`, `GH₵`, `KSh`, …). The Paystack transaction is always charged in **NGN** — update the `currency` field in `components/CartDrawer.js` if your Paystack account is set up for a different currency.
+Set `NEXT_PUBLIC_CURRENCY_SYMBOL` to any symbol (`$`, `€`, `GH₵`, `KSh`, …). The Paystack transaction is always charged in **NGN** — update the `currency` field in `components/CartDrawer.tsx` if your Paystack account is set up for a different currency.
 
-### Fonts and colours
+### Design taste
 
-The template uses [Inter](https://fonts.google.com/specimen/Inter) and a neutral gray palette. To change:
-
-- **Font** — edit the Google Fonts link in `app/layout.js` and update `--font-sans` in `app/globals.css`
-- **Accent colour** — search for `bg-gray-900` across components and replace with your brand colour (e.g. `bg-indigo-600`)
+Open your project with Claude and say: *"Read TASTE.md and help me pick a design."* Claude will present the five options and apply your choice — fonts, colours, border radius, shadows — across all components. See [`TASTE.md`](./TASTE.md) for the full breakdown.
 
 ### Adding pages
 
@@ -173,13 +187,13 @@ https://your-domain.com/api/paystack/webhook
 ```
 my-store/
 ├── app/
-│   ├── page.js                  # Homepage
+│   ├── page.tsx                 # Homepage
 │   ├── store/
-│   │   ├── page.js              # Product listing
-│   │   └── [slug]/page.js       # Product detail
+│   │   ├── page.tsx             # Product listing
+│   │   └── [slug]/page.tsx      # Product detail
 │   ├── admin/
-│   │   ├── page.js              # Admin dashboard
-│   │   └── login/page.js        # Admin login
+│   │   ├── page.tsx             # Admin dashboard
+│   │   └── login/page.tsx       # Admin login
 │   └── api/
 │       ├── paystack/
 │       │   ├── verify/          # Verifies payment & creates order
@@ -187,15 +201,18 @@ my-store/
 │       ├── orders/whatsapp/     # Logs WhatsApp orders
 │       └── subscribers/         # Newsletter signup
 ├── components/
-│   ├── Navbar.js
-│   ├── CartDrawer.js
-│   ├── ProductCard.js
-│   └── TheDropClient.js         # Newsletter form
+│   ├── Navbar.tsx
+│   ├── CartDrawer.tsx
+│   ├── ProductCard.tsx
+│   └── TheDropClient.tsx        # Newsletter form
 ├── lib/
-│   ├── cart-context.js          # React cart state
+│   ├── cart-context.tsx         # React cart state
 │   └── supabase/                # Supabase client helpers
-└── supabase/
-    └── schema.sql               # Run once to set up the database
+├── types/
+│   └── index.ts                 # All shared TypeScript types
+├── supabase/
+│   └── schema.sql               # Run once to set up the database
+└── TASTE.md                     # Design themes — apply with Claude
 ```
 
 ---
